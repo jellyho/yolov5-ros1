@@ -27,3 +27,10 @@ pip install -r requirements.txt
 ```
 
 4) 패키지 빌드 후 실행
+
+```jsx
+cd ~/catkin_ws
+catkin build
+source devel/setup.bash
+roslaunch yolo yolo.launch
+```

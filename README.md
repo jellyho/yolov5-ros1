@@ -1,4 +1,4 @@
-# yolov5-ros1-wrapper
+# yolov5-wrapper-ros1-noetic
 
 simple yolov5 wrapper.
 

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
 <launch>
-    <node pkg="yolo" type="cam.py" name="webcam_publisher" required="true" output="screen" />
-	<node pkg="yolo" type="yolo.py" name="yolo_node" required="true" output="screen" />
+    <node pkg="yolov5" type="cam.py" name="webcam_publisher" required="true" output="screen" />
+	<node pkg="yolov5" type="yolo.py" name="yolo_node" required="true" output="screen" />
 </launch>

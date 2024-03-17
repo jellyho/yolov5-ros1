@@ -7,8 +7,8 @@ from cv_bridge import CvBridge
 
 
 rospack = rospkg.RosPack()
-yoloPath = rospack.get_path('yolo') + '/src/yolov5'
-weightPath = rospack.get_path('yolo') + '/src/yolov5nV3.pt'
+yoloPath = rospack.get_path('yolov5') + '/yolov5'
+weightPath = rospack.get_path('yolov5') + '/src/yolov5nV3.pt'
 
 model = torch.hub.load(yoloPath, 'custom', weightPath, source='local')
 model.iou = 0.5

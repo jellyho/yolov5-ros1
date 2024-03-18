@@ -9,7 +9,7 @@ This is a structure that creates a webcam node that publishes an image, and the 
 
 ```jsx
 cd catckin_ws/src
-git clone https://github.com/jellyho/yolov5-ros1-wrapper.git
+git clone https://github.com/jellyho/yolov5-ros1.git
 ```
 
 2) install python dependencies of yolov5

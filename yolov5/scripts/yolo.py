@@ -33,7 +33,7 @@ def image_subscriber(image_msg):
 
 def image_subscriber_node():
     rospy.init_node('yolo_node', anonymous=True)
-    rospy.Subscriber('webcam_topic', Image, image_subscriber)
+    rospy.Subscriber('/webcam', Image, image_subscriber)
     rospy.spin()
 
 if __name__ == '__main__':

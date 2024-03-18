@@ -7,7 +7,7 @@ from cv_bridge import CvBridge
 
 def webcam_publisher():
     rospy.init_node('webcam_publisher', anonymous=True)
-    image_pub = rospy.Publisher('webcam_topic', Image, queue_size=10)
+    image_pub = rospy.Publisher('/webcam', Image, queue_size=10)
     rate = rospy.Rate(10)  # 발행 주기를 설정합니다 (여기서는 10Hz로 설정되었습니다).
 
     capture = cv2.VideoCapture(0)
@@ -21,9 +21,7 @@ def webcam_publisher():
             # 읽은 프레임을 ROS 메시지 형식으로 변환합니다.
             ros_image = bridge.cv2_to_imgmsg(frame, encoding="rgb8")
             image_pub.publish(ros_image)  # ROS 토픽으로 프레임을 발행합니다.
-
         rate.sleep()
-
     capture.release()  # 캡처 객체를 해제합니다.
 
 if __name__ == '__main__':

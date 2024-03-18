@@ -12,19 +12,19 @@ cd catckin_ws/src
 git clone https://github.com/jellyho/yolov5-ros1-wrapper.git
 ```
 
-2) download yolov5 repository
-
-```jsx
-cd yolo/src
-git clone https://github.com/ultralytics/yolov5.git
-```
-
-3) install python dependencies of yolov5
+2) install python dependencies of yolov5
 
 ```jsx
 cd yolov5
+cd yolov5
 pip install -r requirements.txt
 ```
+
+3) put pretrained weights
+
+copy-paste the pretrained weights into catkin_ws/src/yolov5/src
+
+
 
 4) build the package and run!
 

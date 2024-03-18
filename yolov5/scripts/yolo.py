@@ -4,7 +4,7 @@ import rospy, rospkg
 import cv2, torch
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
-
+from ultralytics.utils.plotting import Annotator, colors, save_one_box
 
 rospack = rospkg.RosPack()
 yoloPath = rospack.get_path('yolov5') + '/yolov5'
@@ -17,7 +17,6 @@ def image_subscriber(image_msg):
     bridge = CvBridge()
 
     try:
-        # ROS 이미지 메시지를 OpenCV 이미지로 변환합니다.
         frame = bridge.imgmsg_to_cv2(image_msg, desired_encoding="rgb8")
         results = model(frame)
 

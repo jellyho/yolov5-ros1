@@ -2,6 +2,7 @@
 
 import rospy, rospkg
 import cv2, torch
+from std_msgs.msg import String
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
 
@@ -33,6 +34,8 @@ def image_subscriber_node():
     verbose = rospy.get_param('~verbose')
     publish = rospy.get_param('~publish')
 
+    json_publisher = rospy.Publisher('/yolo_results', String, queue_size=1)
+
     if publish:
         publisher = rospy.Publisher('/yolo_image', Image, queue_size=1)
 
@@ -41,6 +44,7 @@ def image_subscriber_node():
             frame = latest_image
             results = model(frame)
             results.render()
+            json_publisher.publish(String(results.pandas().xyxy[0].to_json(orient="records")))
 
             if verbose:
                 cv2.imshow("Received Image", frame)

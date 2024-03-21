@@ -58,5 +58,26 @@ roslaunch yolov5 yolo_webcam.launch vebose:=false publish:=true
 
 ```jsx
 /yolo_image - Image - Annotated inferenced image when publish:=true
-/yolo_results - tbd
+/yolo_results - String - Bounding box information encoded into json format
+```
+
+> How to use /yolo_results ?
+
+```python
+# define String msg subscriber
+rospy.Subscriber('/yolo_results', String, yolo_cb)
+```
+
+```python
+# In callback, convert to json
+import json
+
+def yolo_cb(msg):
+    result = json.loads(msg.data)
+    print(result)
+```
+
+```bash
+[{'xmin': 140.4574737549, 'ymin': 1.7290496826, 'xmax': 509.8947143555, 'ymax': 480.0, 'confidence': 0.5377990603, 'class': 0, 'name': 'person'},
+ {'xmin': 25.5067329407, 'ymin': 366.9152832031, 'xmax': 146.5026702881, 'ymax': 455.7973632812, 'confidence': 0.520999074, 'class': 64, 'name': 'mouse'}]
 ```

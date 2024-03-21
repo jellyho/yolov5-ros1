@@ -24,13 +24,11 @@ pip install -r requirements.txt
 
 copy-paste the pretrained weights into catkin_ws/src/yolov5/src
 
-
-
 4) build the package and run!
 
 ```jsx
 cd ~/catkin_ws
 catkin build
 source devel/setup.bash
-roslaunch yolo yolo.launch
+roslaunch yolov5 yolo.launch
 ```

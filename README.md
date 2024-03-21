@@ -15,7 +15,7 @@ git clone --recursive https://github.com/jellyho/yolov5-ros1.git
 2) install python dependencies of yolov5
 
 ```jsx
-cd yolov5
+cd yolov5-ros1
 cd yolov5
 pip install -r requirements.txt
 ```

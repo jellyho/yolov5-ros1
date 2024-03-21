@@ -7,7 +7,7 @@ from cv_bridge import CvBridge
 
 def webcam_publisher():
     rospy.init_node('webcam_publisher', anonymous=True)
-    image_pub = rospy.Publisher('/webcam', Image, queue_size=10)
+    image_pub = rospy.Publisher('/webcam', Image, queue_size=1)
     rate = rospy.Rate(10)  # 발행 주기를 설정합니다 (여기서는 10Hz로 설정되었습니다).
 
     capture = cv2.VideoCapture(0)

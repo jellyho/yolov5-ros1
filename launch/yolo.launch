@@ -1,5 +1,12 @@
 <?xml version="1.0"?>
 <launch>
-    <node pkg="yolov5" type="cam.py" name="webcam_publisher" required="true" output="screen" />
-	<node pkg="yolov5" type="yolo.py" name="yolo_node" required="true" output="screen" />
+    <arg name="image" default="/webcam"/>
+    <arg name="verbose" default="false"/>
+    <arg name="publish" default="true" />
+
+	<node pkg="yolov5" type="yolo.py" name="yolo_node" required="true" output="screen" >
+        <param name="image" type="string" value="$(arg image)"/>
+        <param name="verbose" type="bool" value="$(arg verbose)"/>
+        <param name="publish" type="bool" value="$(arg publish_image)"/>
+    </node>
 </launch>

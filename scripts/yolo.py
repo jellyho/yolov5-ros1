@@ -27,20 +27,28 @@ def image_subscriber(image_msg):
 
 def image_subscriber_node():
     rospy.init_node('yolo_node', anonymous=True)
-    rospy.Subscriber('/webcam', Image, image_subscriber)
+    
+    topic = rospy.get_param('~image')
+    rospy.Subscriber(topic, Image, image_subscriber)
+    verbose = rospy.get_param('~verbose')
+    publish = rospy.get_param('~publish')
+
+    if publish:
+        publisher = rospy.Publisher('/yolo_image', Image, queue_size=1)
+
     while not rospy.is_shutdown():
         if latest_image is not None:
             frame = latest_image
             results = model(frame)
             results.render()
 
-            # for volume in results.xyxy[0]:
-            #     xyxy = volume.numpy()
-            #     cv2.rectangle(frame, (int(xyxy[0]), int(xyxy[1])), (int(xyxy[2]), int(xyxy[3])), color=(0, 255, 0), thickness=2)
-            #     cv2.putText(frame, f'{xyxy[4]:.3f}', (int(xyxy[0]), int(xyxy[1])), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(0, 255, 0), thickness=2)
+            if verbose:
+                cv2.imshow("Received Image", frame)
+                cv2.waitKey(1)
 
-            cv2.imshow("Received Image", frame)
-            cv2.waitKey(1)
+            if publish:
+                bridge = CvBridge()
+                publisher.publish(bridge.cv2_to_imgmsg(frame, encoding="bgr8"))
 
 if __name__ == '__main__':
     try:

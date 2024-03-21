@@ -1,4 +1,0 @@
-<?xml version="1.0"?>
-<launch>
-    <node pkg="yolov5" type="cam.py" name="webcam_publisher" required="true" output="screen" />
-</launch>

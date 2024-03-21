@@ -7,14 +7,14 @@ Subscribes the image topic and inference by yolov5 to get bounding box and annot
 You can use webcam as an image publisher.
 
 
-### 1) download this repository to workspace/src
+### 1) Download this repository to workspace/src
 
 ```jsx
 cd catckin_ws/src
 git clone --recursive https://github.com/jellyho/yolov5-ros1.git
 ```
 
-### 2) install python dependencies of yolov5
+### 2) Install python dependencies of yolov5
 
 ```jsx
 cd yolov5-ros1
@@ -22,7 +22,7 @@ cd yolov5
 pip install -r requirements.txt
 ```
 
-### 3) put pretrained weights
+### 3) Put pretrained weights
 
 copy-paste the pretrained weights into catkin_ws/src/yolov5/src
 

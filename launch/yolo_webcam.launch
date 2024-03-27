@@ -2,11 +2,13 @@
 <launch>
     <arg name="verbose" default="false"/>
     <arg name="publish" default="true" />
+    <arg name="weights" default="None" />
     
     <node pkg="yolov5" type="cam.py" name="webcam_publisher" required="true" output="screen" />
 	<node pkg="yolov5" type="yolo.py" name="yolo_node" output="screen" >
         <param name="image" type="string" value="/webcam"/>
         <param name="verbose" type="bool" value="$(arg verbose)"/>
         <param name="publish" type="bool" value="$(arg publish)"/>
+        <param name="weights" type="string" value="$(arg weights)"/>
     </node>
 </launch>

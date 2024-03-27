@@ -7,11 +7,6 @@ from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
 
 rospack = rospkg.RosPack()
-yoloPath = rospack.get_path('yolov5') + '/yolov5'
-weightPath = rospack.get_path('yolov5') + '/src/yolov5s.pt'
-
-model = torch.hub.load(yoloPath, 'custom', weightPath, source='local')
-model.iou = 0.5
 
 latest_image = None
 
@@ -27,8 +22,20 @@ def image_subscriber(image_msg):
         rospy.logerr(e)
 
 def image_subscriber_node():
-    rospy.init_node('yolo_node', anonymous=True)
+    rospy.init_node('yolov5_node', anonymous=True)
     
+    weights = rospy.get_param('~weights')
+    if weights == "None":
+        rospy.loginfo("USE Default pretrained weights - yolov5s.pt")
+        weightPath = 'yolov5s.pt'
+    else:
+        weightPath = rospack.get_path('yolov5') + f'/src/{weights}'
+        
+    yoloPath = rospack.get_path('yolov5') + '/yolov5'
+
+    model = torch.hub.load(yoloPath, 'custom', weightPath, source='local')
+    model.iou = 0.1
+
     topic = rospy.get_param('~image')
     rospy.Subscriber(topic, Image, image_subscriber)
     verbose = rospy.get_param('~verbose')

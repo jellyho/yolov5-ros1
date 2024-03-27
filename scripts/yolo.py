@@ -51,7 +51,11 @@ def image_subscriber_node():
             frame = latest_image
             results = model(frame)
             results.render()
-            json_publisher.publish(String(results.pandas().xyxy[0].to_json(orient="records")))
+
+            try:
+                json_publisher.publish(String(results.pandas().xyxy[0].to_json(orient="records")))
+            except:
+                pass
 
             if verbose:
                 cv2.imshow("Received Image", frame)

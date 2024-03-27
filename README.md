@@ -36,17 +36,21 @@ catkin build
 source devel/setup.bash
 ```
 
-There are two options when execute launch file.
+There are three options when execute launch file.
+- image(string) : Image topic name that you want to apply yolov5.
 - verbose(bool) : Open popup window that shows the annotated results.
 - publish(bool) : Publish the annotated image
+- weights(stirng) : Pretrained weight name in src/ folder
 
 Default setting is verbose:=false, publish:=true
+
+If you don't put any option about weights, defuault yolov5n.pt will applied.
 
 .
 
 1. Subscribe existing image topic and yolo
 ```jsx
-roslaunch yolov5 yolo.launch image:='/topic_name' verbose:=false publish:= true
+roslaunch yolov5 yolo.launch image:='/topic_name' verbose:=false publish:= true weights:=yolov8m.pt
 ```
 
 2. Use webcam as an image publisher

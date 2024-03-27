@@ -1,6 +1,6 @@
 # yolov5-ros1
 
-Simple yolov5 wrapper.
+Simple yolov5 ros1 wrapper.
 
 Subscribes the image topic and inference by yolov5 to get bounding box and annotations.
 
@@ -50,7 +50,7 @@ If you don't put any option about weights, defuault yolov5n.pt will applied.
 
 1. Subscribe existing image topic and yolo
 ```jsx
-roslaunch yolov5 yolo.launch image:='/topic_name' verbose:=false publish:= true weights:=yolov8m.pt
+roslaunch yolov5 yolo.launch image:='/topic_name' verbose:=false publish:= true weights:=yolov5m.pt
 ```
 
 2. Use webcam as an image publisher
